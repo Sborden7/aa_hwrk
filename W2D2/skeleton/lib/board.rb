@@ -25,14 +25,10 @@ class Board
     pos = start_pos
 
     until stones_arr.empty?
-      # next if current_player_name == @name1 && pos == 13
-      # next if current_player_name == @name2 && pos == 6
-      # cups[pos] << stones_arr.pop
-      # pos += 1
-      # self.render
+
       pos += 1
       pos = 0 if pos > 13
-      # places stones in the correct current player's cups
+
       if pos == 6
         @cups[6] << stones_arr.pop if current_player_name == @name1
       elsif pos == 13
@@ -50,8 +46,8 @@ class Board
   def next_turn(ending_cup_idx)
     # debugger
     if ending_cup_idx == 6 || ending_cup_idx == 13
-      return :prompt
-    elsif cups[ending_cup_idx].count == 0
+     :prompt
+   elsif cups[ending_cup_idx].count == 1
       return :switch
     else
       return ending_cup_idx
@@ -83,8 +79,4 @@ class Board
      p1_score > p2_score ? @name1 : @name2
    end
   end
-end
-
-class InvalidStartCupError < StandardError
-
 end
